@@ -41,11 +41,15 @@ function startTimer() {
   timerId = setInterval(() => {
     currentDate = new Date();
     const differensTime = selectedDate.getTime() - currentDate.getTime();
-    const convertedTime = convertMs(differensTime);
-    days.innerHTML = convertedTime.days;
-    hours.innerHTML = convertedTime.hours;
-    minutes.innerHTML = convertedTime.minutes;
-    seconds.innerHTML = convertedTime.seconds;
+    if (differensTime < 0) {
+      clearInterval(timerId);
+    } else {
+      const convertedTime = convertMs(differensTime);
+      days.innerHTML = convertedTime.days;
+      hours.innerHTML = convertedTime.hours;
+      minutes.innerHTML = convertedTime.minutes;
+      seconds.innerHTML = convertedTime.seconds;
+    }
   }, 1000);
 }
 

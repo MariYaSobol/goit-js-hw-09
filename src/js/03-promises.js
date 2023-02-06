@@ -28,14 +28,15 @@ function onFormSubmit(e) {
   let amount = Number(amountInput.value);
 
   for (let i = 1; i <= amount; i += 1) {
-    let currentDelay = delay + step * i;
+    // let currentDelay = delay + step * i;
 
-    createPromise(i, currentDelay)
+    createPromise(i, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
+    delay += step;
   }
 }
